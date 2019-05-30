@@ -33,13 +33,13 @@ defmodule FileSizeEcto.ByteTest do
       assert Byte.cast(12345.67) == {:ok, ~F(12345 B)}
     end
 
-    test "normalize FileSize.Byte" do
+    test "cast FileSize.Byte" do
       assert Byte.cast(~F(4 B)) == {:ok, ~F(4 B)}
       assert Byte.cast(~F(4 kB)) == {:ok, ~F(4000 B)}
       assert Byte.cast(~F(4 KiB)) == {:ok, ~F(4096 B)}
     end
 
-    test "cast FileSize.Bit and normalize to FileSize.Byte" do
+    test "cast FileSize.Bit" do
       assert Byte.cast(~F(16 bit)) == {:ok, ~F(2 B)}
       assert Byte.cast(~F(16 kbit)) == {:ok, ~F(2000 B)}
       assert Byte.cast(~F(16 Kibit)) == {:ok, ~F(2048 B)}
