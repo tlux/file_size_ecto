@@ -14,7 +14,8 @@ defmodule FileSizeEcto.MixProject do
         "coveralls.detail": :test,
         "coveralls.post": :test,
         "coveralls.html": :test
-      ]
+      ],
+      elixirc_paths: elixirc_paths(Mix.env())
     ]
   end
 
@@ -35,4 +36,7 @@ defmodule FileSizeEcto.MixProject do
       {:file_size, "~> 1.2"}
     ]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_), do: ["lib"]
 end
