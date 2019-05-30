@@ -1,3 +1,3 @@
 defmodule FileSizeEcto.Type.Byte do
-  use FileSizeEcto.Type, normalized_unit: :b
+  use FileSizeEcto.Type, unit: :b
 end

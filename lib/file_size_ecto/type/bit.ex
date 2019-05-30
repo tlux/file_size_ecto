@@ -1,3 +1,3 @@
 defmodule FileSizeEcto.Type.Bit do
-  use FileSizeEcto.Type, normalized_unit: :bit
+  use FileSizeEcto.Type, unit: :bit
 end
