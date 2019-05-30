@@ -1,2 +1,0 @@
-defmodule FileSizeEcto do
-end
