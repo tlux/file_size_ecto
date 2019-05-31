@@ -4,8 +4,8 @@ defmodule TestSchema do
   use Ecto.Schema
 
   embedded_schema do
-    field :bit_size, FileSizeEcto.Type.Bit
-    field :byte_size, FileSizeEcto.Type.Byte
-    field :byte_size_with_unit, FileSizeEcto.Type.ByteWithUnit
+    field(:bit_size, FileSizeEcto.Bit)
+    field(:byte_size, FileSizeEcto.Byte)
+    field(:byte_size_with_unit, FileSizeEcto.ByteWithUnit)
   end
 end
