@@ -18,7 +18,7 @@ defmodule FileSizeEcto.Byte do
   end
 
   def cast(value) when is_float(value) do
-    value |> trunc() |> cast()
+    value |> trunc() |> load()
   end
 
   def cast(str) when is_binary(str) do
