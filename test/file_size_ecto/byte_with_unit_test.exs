@@ -64,6 +64,7 @@ defmodule FileSizeEcto.ByteWithUnitTest do
       assert ByteWithUnit.cast(%{"value" => "", "unit" => ""}) == :error
       assert ByteWithUnit.cast(%{"value" => "1", "unit" => "kb"}) == :error
       assert ByteWithUnit.cast(%{"value" => 1, "unit" => ""}) == :error
+      assert ByteWithUnit.cast(%{}) == :error
     end
   end
 
@@ -88,6 +89,7 @@ defmodule FileSizeEcto.ByteWithUnitTest do
       assert ByteWithUnit.dump(~F(16 bit)) == :error
       assert ByteWithUnit.dump(~F(16 kbit)) == :error
       assert ByteWithUnit.dump(~F(16 Kibit)) == :error
+      assert ByteWithUnit.cast(%{}) == :error
     end
   end
 

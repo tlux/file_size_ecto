@@ -66,6 +66,7 @@ defmodule FileSizeEcto.BitWithUnitTest do
       assert BitWithUnit.cast(%{"value" => "", "unit" => ""}) == :error
       assert BitWithUnit.cast(%{"value" => "1", "unit" => "kib"}) == :error
       assert BitWithUnit.cast(%{"value" => 1, "unit" => ""}) == :error
+      assert BitWithUnit.cast(%{}) == :error
     end
   end
 
@@ -90,6 +91,7 @@ defmodule FileSizeEcto.BitWithUnitTest do
       assert BitWithUnit.dump(~F(16 B)) == :error
       assert BitWithUnit.dump(~F(16 kB)) == :error
       assert BitWithUnit.dump(~F(16 KiB)) == :error
+      assert BitWithUnit.cast(%{}) == :error
     end
   end
 
