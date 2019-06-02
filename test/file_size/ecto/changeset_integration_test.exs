@@ -1,9 +1,9 @@
-defmodule FileSizeEcto.ChangesetIntegrationTest do
+defmodule FileSize.Ecto.ChangesetIntegrationTest do
   use ExUnit.Case
 
   import Ecto.Changeset
 
-  describe "Ecto.Changeset.cast/2 with FileSizeEcto.Bit" do
+  describe "Ecto.Changeset.cast/2 with FileSize.Ecto.Bit" do
     test "valid when value present" do
       changeset = cast(%TestSchema{}, %{bit_size: "16 Mbit"}, [:bit_size])
 
@@ -34,7 +34,7 @@ defmodule FileSizeEcto.ChangesetIntegrationTest do
     end
   end
 
-  describe "Ecto.Changeset.cast/2 with FileSizeEcto.BitWithUnit" do
+  describe "Ecto.Changeset.cast/2 with FileSize.Ecto.BitWithUnit" do
     test "valid when value present" do
       changeset =
         cast(%TestSchema{}, %{bit_size_with_unit: "16 Mbit"}, [
@@ -74,7 +74,7 @@ defmodule FileSizeEcto.ChangesetIntegrationTest do
     end
   end
 
-  describe "Ecto.Changeset.cast/2 with FileSizeEcto.Byte" do
+  describe "Ecto.Changeset.cast/2 with FileSize.Ecto.Byte" do
     test "valid when value present" do
       changeset = cast(%TestSchema{}, %{byte_size: "16 MB"}, [:byte_size])
 
@@ -105,7 +105,7 @@ defmodule FileSizeEcto.ChangesetIntegrationTest do
     end
   end
 
-  describe "Ecto.Changeset.cast/2 with FileSizeEcto.ByteWithUnit" do
+  describe "Ecto.Changeset.cast/2 with FileSize.Ecto.ByteWithUnit" do
     test "valid when value present" do
       changeset =
         cast(%TestSchema{}, %{byte_size_with_unit: "16 MB"}, [

@@ -1,7 +1,7 @@
-defmodule FileSizeEcto.Bit do
+defmodule FileSize.Ecto.Byte do
   @behaviour Ecto.Type
 
-  alias FileSize.Bit
+  alias FileSize.Byte
 
   @impl true
   def type, do: :integer
@@ -9,8 +9,8 @@ defmodule FileSizeEcto.Bit do
   @impl true
   def cast(term)
 
-  def cast(%Bit{} = size) do
-    {:ok, FileSize.convert(size, :bit)}
+  def cast(%Byte{} = size) do
+    {:ok, FileSize.convert(size, :b)}
   end
 
   def cast(value) when is_integer(value) do
@@ -33,8 +33,8 @@ defmodule FileSizeEcto.Bit do
   @impl true
   def dump(term)
 
-  def dump(%Bit{} = size) do
-    {:ok, size.bits}
+  def dump(%Byte{} = size) do
+    {:ok, size.bytes}
   end
 
   def dump(_term), do: :error
@@ -43,7 +43,7 @@ defmodule FileSizeEcto.Bit do
   def load(term)
 
   def load(value) when is_integer(value) do
-    {:ok, FileSize.new(value, :bit)}
+    {:ok, FileSize.new(value, :b)}
   end
 
   def load(_term), do: :error

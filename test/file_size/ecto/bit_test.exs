@@ -1,9 +1,9 @@
-defmodule FileSizeEcto.BitTest do
+defmodule FileSize.Ecto.BitTest do
   use ExUnit.Case
 
   import FileSize.Sigil
 
-  alias FileSizeEcto.Bit
+  alias FileSize.Ecto.Bit
 
   describe "type/0" do
     test "is integer" do

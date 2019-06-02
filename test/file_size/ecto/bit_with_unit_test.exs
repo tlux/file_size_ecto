@@ -1,9 +1,9 @@
-defmodule FileSizeEcto.BitWithUnitTest do
+defmodule FileSize.Ecto.BitWithUnitTest do
   use ExUnit.Case
 
   import FileSize.Sigil
 
-  alias FileSizeEcto.BitWithUnit
+  alias FileSize.Ecto.BitWithUnit
 
   describe "type/0" do
     test "is map" do

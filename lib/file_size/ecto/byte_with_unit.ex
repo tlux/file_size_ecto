@@ -1,9 +1,9 @@
-defmodule FileSizeEcto.ByteWithUnit do
+defmodule FileSize.Ecto.ByteWithUnit do
   @behaviour Ecto.Type
 
   alias FileSize.Byte
-  alias FileSizeEcto.Byte, as: ByteType
-  alias FileSizeEcto.Utils
+  alias FileSize.Ecto.Byte, as: ByteType
+  alias FileSize.Ecto.Utils
 
   @impl true
   def type, do: :map
@@ -50,7 +50,7 @@ defmodule FileSizeEcto.ByteWithUnit do
   def dump(term)
 
   def dump(%Byte{} = size) do
-    {:ok, %{"bytes" => size.bytes, "unit" => to_string(size.unit)}}
+    {:ok, %{"bytes" => size.bytes, "unit" => Utils.serialize_unit(size.unit)}}
   end
 
   def dump(_term), do: :error
@@ -68,12 +68,6 @@ defmodule FileSizeEcto.ByteWithUnit do
   def load(_term), do: :error
 
   defp parse_unit(unit) do
-    case Utils.parse_unit(unit) do
-      {:ok, %{mod: Byte, name: name}} ->
-        {:ok, name}
-
-      _ ->
-        :error
-    end
+    Utils.parse_unit_for_type(unit, Byte)
   end
 end

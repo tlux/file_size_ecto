@@ -1,4 +1,4 @@
-defmodule FileSizeEcto.MixProject do
+defmodule FileSize.Ecto.MixProject do
   use Mix.Project
 
   def project do
