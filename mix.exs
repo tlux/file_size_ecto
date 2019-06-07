@@ -4,7 +4,7 @@ defmodule FileSize.Ecto.MixProject do
   def project do
     [
       app: :file_size_ecto,
-      version: "1.0.0",
+      version: "2.0.0",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
       deps: deps(),

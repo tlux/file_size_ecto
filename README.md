@@ -12,7 +12,7 @@ by adding `file_size_ecto` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:file_size_ecto, "~> 0.1.0"}
+    {:file_size_ecto, "~> 2.0.0"}
   ]
 end
 ```
