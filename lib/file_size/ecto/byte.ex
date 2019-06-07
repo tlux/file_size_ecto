@@ -34,7 +34,7 @@ defmodule FileSize.Ecto.Byte do
   def dump(term)
 
   def dump(%Byte{} = size) do
-    {:ok, size.bytes}
+    {:ok, FileSize.to_integer(size)}
   end
 
   def dump(_term), do: :error

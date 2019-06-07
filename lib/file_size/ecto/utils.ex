@@ -15,17 +15,15 @@ defmodule FileSize.Ecto.Utils do
     end
   end
 
-  defp parse_unit(unit) when is_binary(unit) do
-    unit
+  defp parse_unit(unit_str) when is_binary(unit_str) do
+    unit_str
     |> String.to_existing_atom()
-    |> Units.unit_info()
+    |> Units.fetch()
   rescue
     ArgumentError -> :error
   end
 
-  defp parse_unit(unit) do
-    Units.unit_info(unit)
-  end
+  defp parse_unit(unit), do: Units.fetch(unit)
 
   @spec serialize_unit(FileSize.unit() | String.t()) :: String.t()
   def serialize_unit(unit), do: to_string(unit)

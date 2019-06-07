@@ -50,7 +50,11 @@ defmodule FileSize.Ecto.ByteWithUnit do
   def dump(term)
 
   def dump(%Byte{} = size) do
-    {:ok, %{"bytes" => size.bytes, "unit" => Utils.serialize_unit(size.unit)}}
+    {:ok,
+     %{
+       "bytes" => FileSize.to_integer(size),
+       "unit" => Utils.serialize_unit(size.unit)
+     }}
   end
 
   def dump(_term), do: :error
