@@ -1,4 +1,20 @@
 defmodule FileSize.Ecto.BitWithUnit do
+  @moduledoc """
+  An Ecto type that represents a file size in bits, supporting storage of
+  different units. The value is stored as map in the database (i.e. jsonb when
+  using PostgreSQL).
+
+  ## Example
+
+      defmodule MySchema do
+        use Ecto.Schema
+
+        schema "my_table" do
+          field :file_size, FileSize.Ecto.BitWithUnit
+        end
+      end
+  """
+
   @behaviour Ecto.Type
 
   alias FileSize.Bit

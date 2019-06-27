@@ -1,4 +1,19 @@
 defmodule FileSize.Ecto.Bit do
+  @moduledoc """
+  An Ecto type that represents a file size in bits. The value is stored as
+  integer in the database.
+
+  ## Example
+
+      defmodule MySchema do
+        use Ecto.Schema
+
+        schema "my_table" do
+          field :file_size, FileSize.Ecto.Bit
+        end
+      end
+  """
+
   @behaviour Ecto.Type
 
   alias FileSize.Bit
