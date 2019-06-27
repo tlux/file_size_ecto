@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/tlux/file_size_ecto.svg?branch=master)](https://travis-ci.org/tlux/file_size_ecto)
 
-**TODO: Add description**
+Provides types for file sizes that you can use in your Ecto schemata.
 
 ## Installation
 

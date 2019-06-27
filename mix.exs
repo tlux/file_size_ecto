@@ -7,6 +7,7 @@ defmodule FileSize.Ecto.MixProject do
       version: "2.0.0",
       elixir: "~> 1.8",
       start_permanent: Mix.env() == :prod,
+      description: description(),
       deps: deps(),
       test_coverage: [tool: ExCoveralls],
       preferred_cli_env: [
@@ -15,6 +16,7 @@ defmodule FileSize.Ecto.MixProject do
         "coveralls.post": :test,
         "coveralls.html": :test
       ],
+      package: package(),
       elixirc_paths: elixirc_paths(Mix.env())
     ]
   end
@@ -34,6 +36,19 @@ defmodule FileSize.Ecto.MixProject do
       {:ex_doc, "~> 0.20.2", only: :dev, runtime: false},
       {:excoveralls, "~> 0.11.0", only: :test},
       {:file_size, "~> 2.0"}
+    ]
+  end
+
+  defp description do
+    "Provides types for file sizes that you can use in your Ecto schemata."
+  end
+
+  defp package do
+    [
+      licenses: ["MIT"],
+      links: %{
+        "GitHub" => "https://github.com/tlux/file_size_ecto"
+      }
     ]
   end
 
