@@ -18,6 +18,30 @@ defmodule FileSize.Ecto.BitTest do
       assert Bit.cast(~F(4 Kibit)) == {:ok, ~F(4096 bit)}
     end
 
+    test "cast map with atom keys" do
+      assert Bit.cast(%{value: 16, unit: :kbit}) == {:ok, ~F(16000 bit)}
+      assert Bit.cast(%{value: 16.0, unit: :kbit}) == {:ok, ~F(16000 bit)}
+
+      assert Bit.cast(%{value: Decimal.new(16), unit: :kbit}) ==
+               {:ok, ~F(16000 bit)}
+
+      assert Bit.cast(%{bits: 16_000, unit: :kbit}) == {:ok, ~F(16000 bit)}
+    end
+
+    test "cast map with string keys" do
+      assert Bit.cast(%{"value" => 16, "unit" => "kbit"}) ==
+               {:ok, ~F(16000 bit)}
+
+      assert Bit.cast(%{"value" => 16.0, "unit" => "kbit"}) ==
+               {:ok, ~F(16000 bit)}
+
+      assert Bit.cast(%{"value" => Decimal.new(16), "unit" => "kbit"}) ==
+               {:ok, ~F(16000 bit)}
+
+      assert Bit.cast(%{"bits" => 16_000, "unit" => "kbit"}) ==
+               {:ok, ~F(16000 bit)}
+    end
+
     test "cast integer" do
       assert Bit.cast(12) == {:ok, ~F(12 bit)}
     end

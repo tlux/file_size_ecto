@@ -5,6 +5,31 @@ defmodule FileSize.Ecto.UtilsTest do
   alias FileSize.Byte
   alias FileSize.Ecto.Utils
 
+  describe "assert_value/1" do
+    test "success with Decimal" do
+      value = Decimal.new(16)
+
+      assert Utils.assert_value(value) == {:ok, value}
+    end
+
+    test "success with float" do
+      value = 16.4
+
+      assert Utils.assert_value(value) == {:ok, value}
+    end
+
+    test "success with integer" do
+      value = 16
+
+      assert Utils.assert_value(value) == {:ok, value}
+    end
+
+    test "error" do
+      assert Utils.assert_value("16") == :error
+      assert Utils.assert_value(:invalid) == :error
+    end
+  end
+
   describe "parse_unit_for_type/2" do
     test "success with atom arg" do
       assert Utils.parse_unit_for_type(:mb, Byte) == {:ok, :mb}

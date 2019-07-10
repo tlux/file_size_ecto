@@ -17,6 +17,7 @@ defmodule FileSize.Ecto.Bit do
   @behaviour Ecto.Type
 
   alias FileSize.Bit
+  alias FileSize.Ecto.Utils
 
   @impl true
   def type, do: :integer
@@ -26,6 +27,28 @@ defmodule FileSize.Ecto.Bit do
 
   def cast(%Bit{} = size) do
     {:ok, FileSize.convert(size, :bit)}
+  end
+
+  def cast(%{"bits" => bits}) do
+    cast(%{bits: bits})
+  end
+
+  def cast(%{"value" => value, "unit" => unit}) do
+    cast(%{value: value, unit: unit})
+  end
+
+  def cast(%{bits: bits}) when is_integer(bits) do
+    load(bits)
+  end
+
+  def cast(%{value: value, unit: unit}) do
+    with {:ok, value} <- Utils.assert_value(value),
+         {:ok, unit} <- Utils.parse_unit_for_type(unit, Bit) do
+      {:ok,
+       value
+       |> FileSize.new(unit)
+       |> FileSize.convert(:bit)}
+    end
   end
 
   def cast(value) when is_integer(value) do

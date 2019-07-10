@@ -45,8 +45,9 @@ defmodule FileSize.Ecto.BitWithUnit do
     end
   end
 
-  def cast(%{value: value, unit: unit}) when is_number(value) do
-    with {:ok, unit} <- parse_unit(unit) do
+  def cast(%{value: value, unit: unit}) do
+    with {:ok, value} <- Utils.assert_value(value),
+         {:ok, unit} <- parse_unit(unit) do
       {:ok, FileSize.new(value, unit)}
     end
   end

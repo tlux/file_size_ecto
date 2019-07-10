@@ -18,6 +18,27 @@ defmodule FileSize.Ecto.ByteTest do
       assert Byte.cast(~F(4 KiB)) == {:ok, ~F(4096 B)}
     end
 
+    test "cast map with atom keys" do
+      assert Byte.cast(%{value: 16, unit: :kb}) == {:ok, ~F(16000 B)}
+      assert Byte.cast(%{value: 16.0, unit: :kb}) == {:ok, ~F(16000 B)}
+
+      assert Byte.cast(%{value: Decimal.new(16), unit: :kb}) ==
+               {:ok, ~F(16000 B)}
+
+      assert Byte.cast(%{bytes: 16_000, unit: :kb}) == {:ok, ~F(16000 B)}
+    end
+
+    test "cast map with string keys" do
+      assert Byte.cast(%{"value" => 16, "unit" => "kb"}) == {:ok, ~F(16000 B)}
+      assert Byte.cast(%{"value" => 16.0, "unit" => "kb"}) == {:ok, ~F(16000 B)}
+
+      assert Byte.cast(%{"value" => Decimal.new(16), "unit" => "kb"}) ==
+               {:ok, ~F(16000 B)}
+
+      assert Byte.cast(%{"bytes" => 16_000, "unit" => "kb"}) ==
+               {:ok, ~F(16000 B)}
+    end
+
     test "cast integer" do
       assert Byte.cast(12) == {:ok, ~F(12 B)}
     end

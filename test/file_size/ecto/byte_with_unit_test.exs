@@ -20,11 +20,22 @@ defmodule FileSize.Ecto.ByteWithUnitTest do
 
     test "cast map with atom keys" do
       assert ByteWithUnit.cast(%{value: 16, unit: :gb}) == {:ok, ~F(16 GB)}
+      assert ByteWithUnit.cast(%{value: 16.0, unit: :gb}) == {:ok, ~F(16 GB)}
+
+      assert ByteWithUnit.cast(%{value: Decimal.new(16), unit: :gb}) ==
+               {:ok, ~F(16 GB)}
+
       assert ByteWithUnit.cast(%{bytes: 16_000, unit: :kb}) == {:ok, ~F(16 kB)}
     end
 
     test "cast map with string keys" do
       assert ByteWithUnit.cast(%{"value" => 16, "unit" => "gb"}) ==
+               {:ok, ~F(16 GB)}
+
+      assert ByteWithUnit.cast(%{"value" => 16.0, "unit" => "gb"}) ==
+               {:ok, ~F(16 GB)}
+
+      assert ByteWithUnit.cast(%{"value" => Decimal.new(16), "unit" => "gb"}) ==
                {:ok, ~F(16 GB)}
 
       assert ByteWithUnit.cast(%{"bytes" => 16_000, "unit" => "kb"}) ==

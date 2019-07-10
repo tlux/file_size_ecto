@@ -3,6 +3,12 @@ defmodule FileSize.Ecto.Utils do
 
   alias FileSize.Units
 
+  @spec assert_value(value) :: {:ok, value} | :error
+        when value: number | Decimal.t()
+  def assert_value(%Decimal{} = value), do: {:ok, value}
+  def assert_value(value) when is_number(value), do: {:ok, value}
+  def assert_value(_), do: :error
+
   @spec parse_unit_for_type(FileSize.unit() | String.t(), module) ::
           {:ok, FileSize.unit()} | :error
   def parse_unit_for_type(unit, mod) do
