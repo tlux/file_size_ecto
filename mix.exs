@@ -17,7 +17,25 @@ defmodule FileSize.Ecto.MixProject do
         "coveralls.html": :test
       ],
       package: package(),
-      elixirc_paths: elixirc_paths(Mix.env())
+      elixirc_paths: elixirc_paths(Mix.env()),
+
+      # Docs
+      name: "File Size for Ecto",
+      source_url: "https://github.com/tlux/file_size_ecto",
+      docs: [
+        main: "readme",
+        extras: ["README.md"],
+        groups_for_modules: [
+          "Normalized Types": [
+            FileSize.Ecto.Bit,
+            FileSize.Ecto.Byte
+          ],
+          "Types with Units": [
+            FileSize.Ecto.BitWithUnit,
+            FileSize.Ecto.ByteWithUnit
+          ]
+        ]
+      ]
     ]
   end
 
