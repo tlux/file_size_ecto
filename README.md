@@ -1,6 +1,7 @@
 # File Size for Ecto
 
 [![Build Status](https://travis-ci.org/tlux/file_size_ecto.svg?branch=master)](https://travis-ci.org/tlux/file_size_ecto)
+[![Coverage Status](https://coveralls.io/repos/github/tlux/file_size_ecto/badge.svg?branch=master)](https://coveralls.io/github/tlux/file_size_ecto?branch=master)
 [![Hex.pm](https://img.shields.io/hexpm/v/file_size_ecto.svg)](https://hex.pm/packages/file_size_ecto)
 
 Provides types for file sizes that you can use in your Ecto schemata.
