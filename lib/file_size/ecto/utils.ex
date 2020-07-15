@@ -23,10 +23,8 @@ defmodule FileSize.Ecto.Utils do
 
   defp parse_unit(unit_str) when is_binary(unit_str) do
     unit_str
-    |> String.to_existing_atom()
+    |> String.to_atom()
     |> Units.fetch()
-  rescue
-    ArgumentError -> :error
   end
 
   defp parse_unit(unit), do: Units.fetch(unit)

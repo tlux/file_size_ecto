@@ -11,6 +11,12 @@ defmodule FileSize.Ecto.ByteTest do
     end
   end
 
+  describe "embed_as/1" do
+    test "is :self" do
+      assert Byte.embed_as(nil) == :self
+    end
+  end
+
   describe "cast/1" do
     test "cast FileSize.Byte" do
       assert Byte.cast(~F(4 B)) == {:ok, ~F(4 B)}

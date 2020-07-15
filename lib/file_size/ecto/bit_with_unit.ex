@@ -15,7 +15,7 @@ defmodule FileSize.Ecto.BitWithUnit do
       end
   """
 
-  @behaviour Ecto.Type
+  use Ecto.Type
 
   alias FileSize.Bit
   alias FileSize.Ecto.Bit, as: BitType
@@ -75,6 +75,9 @@ defmodule FileSize.Ecto.BitWithUnit do
   end
 
   def dump(_term), do: :error
+
+  @impl true
+  def embed_as(_format), do: :dump
 
   @impl true
   def load(term)

@@ -11,6 +11,12 @@ defmodule FileSize.Ecto.ByteWithUnitTest do
     end
   end
 
+  describe "embed_as/1" do
+    test "is :self" do
+      assert ByteWithUnit.embed_as(nil) == :dump
+    end
+  end
+
   describe "cast/1" do
     test "cast FileSize.Byte" do
       Enum.each([~F(4 B), ~F(4 kB), ~F(4 KiB)], fn size ->
