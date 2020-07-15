@@ -56,7 +56,7 @@ defmodule FileSize.Ecto.MixProject do
       {:ecto, "~> 3.2"},
       {:ex_doc, "~> 0.20.2", only: :dev, runtime: false},
       {:excoveralls, "~> 0.11.0", only: :test},
-      {:file_size, ">= 2.0.0 and < 4.0.0"}
+      {:file_size, "~> 3.0"}
     ]
   end
 
