@@ -3,9 +3,14 @@ defmodule FileSize.Ecto.Utils do
 
   alias FileSize.Units
 
-  @spec assert_value(value) :: {:ok, value} | :error
-        when value: number | Decimal.t()
-  def assert_value(%Decimal{} = value), do: {:ok, value}
+  if Code.ensure_loaded?(Decimal) do
+    @spec assert_value(value) :: {:ok, value} | :error
+          when value: number | Decimal.t()
+    def assert_value(%Decimal{} = value), do: {:ok, value}
+  else
+    @spec assert_value(value) :: {:ok, value} | :error when value: number
+  end
+
   def assert_value(value) when is_number(value), do: {:ok, value}
   def assert_value(_), do: :error
 
