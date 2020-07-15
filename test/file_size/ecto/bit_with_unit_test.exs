@@ -141,4 +141,20 @@ defmodule FileSize.Ecto.BitWithUnitTest do
                :error
     end
   end
+
+  describe "equal?/2" do
+    test "equality" do
+      assert BitWithUnit.equal?(nil, nil) == true
+      assert BitWithUnit.equal?(~F(16 B), ~F(16 B)) == true
+      assert BitWithUnit.equal?(~F(16 kB), ~F(16000 B)) == true
+    end
+
+    test "inequality" do
+      assert BitWithUnit.equal?(~F(16 B), nil) == false
+      assert BitWithUnit.equal?(nil, ~F(16 B)) == false
+      assert BitWithUnit.equal?(~F(17 B), ~F(16 B)) == false
+      assert BitWithUnit.equal?(~F(17 kB), ~F(16000 B)) == false
+      assert BitWithUnit.equal?(:invalid, :invalid) == false
+    end
+  end
 end

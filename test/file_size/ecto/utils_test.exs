@@ -1,6 +1,8 @@
 defmodule FileSize.Ecto.UtilsTest do
   use ExUnit.Case
 
+  import FileSize.Sigil
+
   alias FileSize.Bit
   alias FileSize.Byte
   alias FileSize.Ecto.Utils
@@ -27,6 +29,22 @@ defmodule FileSize.Ecto.UtilsTest do
     test "error" do
       assert Utils.assert_value("16") == :error
       assert Utils.assert_value(:invalid) == :error
+    end
+  end
+
+  describe "equal?/2" do
+    test "equality" do
+      assert Utils.equal?(nil, nil) == true
+      assert Utils.equal?(~F(16 B), ~F(16 B)) == true
+      assert Utils.equal?(~F(16 kB), ~F(16000 B)) == true
+    end
+
+    test "inequality" do
+      assert Utils.equal?(~F(16 B), nil) == false
+      assert Utils.equal?(nil, ~F(16 B)) == false
+      assert Utils.equal?(~F(17 B), ~F(16 B)) == false
+      assert Utils.equal?(~F(17 kB), ~F(16000 B)) == false
+      assert Utils.equal?(:invalid, :invalid) == false
     end
   end
 

@@ -80,6 +80,9 @@ defmodule FileSize.Ecto.BitWithUnit do
   def embed_as(_format), do: :dump
 
   @impl true
+  defdelegate equal?(size, other_size), to: Utils
+
+  @impl true
   def load(term)
 
   def load(%{"bits" => bits, "unit" => unit_str})

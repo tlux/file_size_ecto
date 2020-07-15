@@ -120,4 +120,20 @@ defmodule FileSize.Ecto.BitTest do
       assert Bit.load(~F(16 KiB)) == :error
     end
   end
+
+  describe "equal?/2" do
+    test "equality" do
+      assert Bit.equal?(nil, nil) == true
+      assert Bit.equal?(~F(16 B), ~F(16 B)) == true
+      assert Bit.equal?(~F(16 kB), ~F(16000 B)) == true
+    end
+
+    test "inequality" do
+      assert Bit.equal?(~F(16 B), nil) == false
+      assert Bit.equal?(nil, ~F(16 B)) == false
+      assert Bit.equal?(~F(17 B), ~F(16 B)) == false
+      assert Bit.equal?(~F(17 kB), ~F(16000 B)) == false
+      assert Bit.equal?(:invalid, :invalid) == false
+    end
+  end
 end

@@ -81,6 +81,9 @@ defmodule FileSize.Ecto.Bit do
   def embed_as(_format), do: :self
 
   @impl true
+  defdelegate equal?(size, other_size), to: Utils
+
+  @impl true
   def load(term)
 
   def load(value) when is_integer(value) do

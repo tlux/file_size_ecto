@@ -14,6 +14,22 @@ defmodule FileSize.Ecto.Utils do
   def assert_value(value) when is_number(value), do: {:ok, value}
   def assert_value(_), do: :error
 
+  @spec equal?(FileSize.t() | String.t(), FileSize.t() | String.t()) :: boolean
+  def equal?(nil, nil), do: true
+
+  def equal?(nil, _), do: false
+
+  def equal?(_, nil), do: false
+
+  def equal?(size, other_size) do
+    with {:ok, size} <- FileSize.parse(size),
+         {:ok, other_size} <- FileSize.parse(other_size) do
+      FileSize.equals?(size, other_size)
+    else
+      _ -> false
+    end
+  end
+
   @spec parse_unit_for_type(FileSize.unit() | String.t(), module) ::
           {:ok, FileSize.unit()} | :error
   def parse_unit_for_type(unit, mod) do
